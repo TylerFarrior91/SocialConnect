@@ -1,9 +1,9 @@
-// ObjectId() method for converting studentId string into an ObjectId for querying database
+
 const { ObjectId } = require('mongoose').Types;
 const { User, Thought } = require('../models');
 
 module.exports = {
-  // Get all students
+  
   async getUsers(req, res) {
     try {
       const users = await User.find();
@@ -14,7 +14,7 @@ module.exports = {
       return res.status(500).json(err);
     }
   },
-  // Get a single student
+  
   async getSingleUser(req, res) {
     try {
       const user = await User.findOne({ _id: req.params.userId })
@@ -34,7 +34,7 @@ module.exports = {
       return res.status(500).json(err);
     }
   },
-  // create a new student
+  
   async createUser(req, res) {
     try {
       const user = await User.create(req.body);
@@ -43,7 +43,7 @@ module.exports = {
       res.status(500).json(err);
     }
   },
-  // Delete a student and remove them from the course
+  
   async deleteUser(req, res) {
     try {
       const user = await User.findOneAndDelete({ _id: req.params.userId });
@@ -52,11 +52,6 @@ module.exports = {
         return res.status(404).json({ message: 'No such user exists' })
       }
 
-
-
-
-
-
       res.json({ message: 'User successfully deleted' });
     } catch (err) {
       console.log(err);
@@ -64,14 +59,14 @@ module.exports = {
     }
   },
 
-  // Add an assignment to a student
-  async addAssignment(req, res) {
+  
+  async addReaaction(req, res) {
     try {
-      console.log('You are adding an assignment');
+      console.log('You are adding an reaction');
       console.log(req.body);
-      const student = await Student.findOneAndUpdate(
-        { _id: req.params.studentId },
-        { $addToSet: { assignments: req.body } },
+      const user = await User.findOneAndUpdate(
+        { _id: req.params.userId },
+        { $addToSet: { thought: req.body } },
         { runValidators: true, new: true }
       );
 
@@ -86,8 +81,8 @@ module.exports = {
       res.status(500).json(err);
     }
   },
-  // Remove assignment from a student
-  async removeAssignment(req, res) {
+  
+  async removeThought(req, res) {
     try {
       const student = await Student.findOneAndUpdate(
         { _id: req.params.studentId },
@@ -101,7 +96,7 @@ module.exports = {
           .json({ message: 'No student found with that ID :(' });
       }
 
-      res.json(student);
+      res.json(user);
     } catch (err) {
       res.status(500).json(err);
     }
