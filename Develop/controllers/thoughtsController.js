@@ -16,11 +16,11 @@ module.exports = {
       const thoughts = await thoughts.findOne({ _id: req.params.thoughtId })
         .select('-__v');
 
-      if (!course) {
+      if (!thoughts) {
         return res.status(404).json({ message: 'No thoughts found.' });
       }
 
-      res.json(thought);
+      res.json(thoughts);
     } catch (err) {
       res.status(500).json(err);
     }
