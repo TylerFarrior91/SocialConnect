@@ -96,7 +96,7 @@ module.exports = {
           .json({ message: 'No reaction found. :(' });
       }
 
-      res.json(user);
+      res.json(User);
     } catch (err) {
       res.status(500).json(err);
     }
