@@ -76,24 +76,24 @@ module.exports = {
           .json({ message: 'No student found with that ID :(' })
       }
 
-      res.json(student);
+      res.json(reaction);
     } catch (err) {
       res.status(500).json(err);
     }
   },
   
-  async removeThought(req, res) {
+  async removeReaction(req, res) {
     try {
-      const student = await Student.findOneAndUpdate(
+      const reaction = await Student.findOneAndUpdate(
         { _id: req.params.studentId },
         { $pull: { assignment: { assignmentId: req.params.assignmentId } } },
         { runValidators: true, new: true }
       );
 
-      if (!student) {
+      if (!reaction) {
         return res
           .status(404)
-          .json({ message: 'No student found with that ID :(' });
+          .json({ message: 'No reaction found. :(' });
       }
 
       res.json(user);
