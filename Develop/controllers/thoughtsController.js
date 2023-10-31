@@ -10,22 +10,22 @@ module.exports = {
       res.status(500).json(err);
     }
   },
-  // Get a course
+  
   async getSingleThoughts(req, res) {
     try {
-      const course = await Course.findOne({ _id: req.params.courseId })
+      const thoughts = await thoughts.findOne({ _id: req.params.thoughtId })
         .select('-__v');
 
       if (!course) {
-        return res.status(404).json({ message: 'No course with that ID' });
+        return res.status(404).json({ message: 'No thoughts found.' });
       }
 
-      res.json(course);
+      res.json(thought);
     } catch (err) {
       res.status(500).json(err);
     }
   },
-  // Create a course
+  
   async createCourse(req, res) {
     try {
       const course = await Course.create(req.body);
