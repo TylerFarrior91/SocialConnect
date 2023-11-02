@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const {
   getThoughts,
-  getSingleStudent,
+  getSingleThoughts,
   createThoughts,
   deleteThoughts,
   addThoughts,
@@ -12,7 +12,7 @@ const {
 router.route('/').get(getThoughts).post(createThoughts);
 
 // /api/students/:studentId
-router.route('/:userId').get(getSingleStudent).delete(deleteStudent);
+router.route('/:userId').get(getSingleThoughts).delete(deleteThoughts;
 
 // /api/students/:studentId/assignments
 router.route('/:studentId/assignments').post(addAssignment);
