@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
-const dateFormat = require('../utils/helpers');
-const reactionSchema = require('../Reaction.js');
+const {date_format} = require('../utils/helpers');
+const reactionSchema = require('./Reaction.js');
 
 const thoughtSchema = new mongoose.Schema({
     text: {
@@ -12,7 +12,7 @@ const thoughtSchema = new mongoose.Schema({
     createdAt: {
         type: Date,
         default: Date.now(),
-        get: TS => dateFormat(TS),
+        get: TS => date_format(TS),
     },
     username: {
         type: String,
